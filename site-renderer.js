@@ -109,10 +109,10 @@ export function renderSite(content) {
   }
 
   // Initial loading state
-  renderLoadingHero();
+  // renderLoadingHero();
 
   // When content is available, render the dynamic hero
-  renderDynamicHero(content);
+  // renderDynamicHero(content);
 
   // Render Intro
   if (content.intro) {
