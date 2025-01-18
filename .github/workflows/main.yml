@@ -1,0 +1,22 @@
+name: Run JavaScript Script
+
+on:
+  workflow_dispatch:  # Allows manual trigger
+  schedule:
+    - cron: '0 0 * * *'  # Runs daily at midnight UTC
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest  # You can change to other OSs as needed
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4 # using latest version of actions/checkout
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4 # using latest version of actions/setup-node
+        with:
+          node-version: '18' # Specify Node.js version (adjust as needed)
+
+      - name: Run script
+        run: node my-script.js  # The command to execute your JavaScript file
