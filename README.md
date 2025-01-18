@@ -1,7 +1,17 @@
+# ai programming playground
+
+
+idea: cursor is annoying, one change may break all your previous work.  found a rules repo, turn it into  a hub website
+
+
+
+
 v1
 
-
 built with websim
+
+![image](https://github.com/user-attachments/assets/c9b90b59-8116-42be-9389-ffd6fb7dfeec)
+
 
 
 v2
