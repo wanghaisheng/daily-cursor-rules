@@ -30,7 +30,7 @@ jobs:
 
       - name: Commit changes
         run: |
-          git add .
+          git add data/*
           git commit -m "Automated update: Data fetched by GitHub Actions" || echo "No changes to commit"
       
       - name: Push changes
