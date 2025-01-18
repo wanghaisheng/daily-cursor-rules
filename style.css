@@ -1,0 +1,333 @@
+:root {
+  /* Color Palette */
+  --color-primary-bg: #f8f8f8;        /* Very Light Gray */
+  --color-secondary-bg: #f2f0ff;      /* Light Lavender */
+  --color-tertiary-bg: #e0e0e0;       /* Medium Light Gray */
+  
+  --color-primary-text: #212121;      /* Very Dark Gray */
+  --color-secondary-text: #555555;    /* Medium Gray */
+  
+  --color-accent-primary: #674ea7;    /* Medium Violet/Purple */
+  --color-accent-secondary: #00bcd4;  /* Cyan/Teal */
+  
+  --color-white: #ffffff;
+}
+
+* {
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background-color: var(--color-primary-bg);
+  color: var(--color-primary-text);
+  line-height: 1.6;
+}
+
+.header-gradient {
+  background: linear-gradient(135deg, var(--color-secondary-bg) 0%, color-mix(in srgb, var(--color-secondary-bg) 90%, var(--color-white)) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.header-gradient::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(103, 78, 167, 0.1), transparent 50%);
+  animation: pulse 10s infinite alternate;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1.1);
+    opacity: 0.9;
+  }
+}
+
+.rules-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+@media (min-width: 768px) {
+  .rules-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.rule-card {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-tertiary-bg);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.rule-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(103, 78, 167, 0.2);
+}
+
+.category-filter {
+  background-color: var(--color-primary-bg);
+  color: var(--color-primary-text);
+  border: 1px solid var(--color-tertiary-bg);
+}
+
+.category-filter.active {
+  background-color: var(--color-accent-primary);
+  color: var(--color-white);
+}
+
+.cTA-button {
+  background-color: var(--color-accent-primary);
+  color: var(--color-white);
+  transition: all 0.3s ease;
+}
+
+.cTA-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 7px 14px rgba(103, 78, 167, 0.3);
+}
+
+#ruleDetailModal {
+  background: rgba(242, 240, 255, 0.9);
+  backdrop-filter: blur(10px);
+}
+
+#ruleDetailContent {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-tertiary-bg);
+  box-shadow: 0 20px 50px rgba(103, 78, 167, 0.2);
+  max-height: 50vh; /* Updated to not exceed half screen height */
+  overflow-y: auto;
+}
+
+#ruleModalBody {
+  background-color: var(--color-secondary-bg);
+  max-height: 30vh; /* Adjusted for content within modal */
+  overflow-y: auto;
+  color: var(--color-primary-text);
+}
+
+.nav-container {
+  position: sticky;
+  top: 0;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  z-index: 100;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+.nav-link {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+  color: var(--color-primary-text);
+  white-space: nowrap;
+}
+
+.nav-link:hover {
+  background: var(--color-secondary-bg);
+  color: var(--color-accent-primary);
+}
+
+.nav-link.active {
+  background: var(--color-accent-primary);
+  color: white;
+}
+
+@media (max-width: 768px) {
+  header {
+    margin-top: 60px;
+  }
+
+  .nav-menu {
+    gap: 0.5rem;
+    padding: 0.5rem;
+  }
+
+  .nav-link {
+    padding: 0.5rem;
+    font-size: 0.875rem;
+  }
+}
+
+#search-input {
+  background-color: var(--color-white);
+  color: var(--color-primary-text);
+  border: 1px solid var(--color-tertiary-bg);
+}
+
+.feed-carousel {
+  overflow: hidden;
+  position: relative;
+  margin: 2rem 0;
+}
+
+.feed-carousel-track {
+  display: flex;
+  gap: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.carousel-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.carousel-nav:hover {
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-prev {
+  left: -20px;
+}
+
+.carousel-next {
+  right: -20px;
+}
+
+.feed-card {
+  flex: 0 0 auto;
+  width: calc(50% - 0.5rem);
+  background: white;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+@media (min-width: 768px) {
+  .feed-card {
+    width: calc(25% - 0.75rem);
+  }
+}
+
+#twitter-feed,
+#youtube-feed,
+#jike-feed {
+  margin-bottom: 2rem;
+}
+
+.twitter-timeline,
+.youtube-channel {
+  width: 100%;
+  min-height: 400px;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+/* Jike Feed Styling */
+#jike-feed .grid div {
+  background-color: var(--color-secondary-bg);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+#jike-feed .grid div:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(103, 78, 167, 0.1);
+}
+
+@media (max-width: 768px) {
+  .twitter-timeline,
+  .youtube-channel {
+    height: 300px;
+  }
+  
+  #jike-feed .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Setup Guide Styles */
+#setup-guide .grid div {
+  border: 1px solid var(--color-tertiary-bg);
+  background-color: var(--color-white);
+  transition: all 0.3s ease;
+}
+
+#setup-guide .grid div:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(103, 78, 167, 0.15);
+}
+
+#setup-guide pre {
+  background-color: var(--color-secondary-bg);
+  color: var(--color-primary-text);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+}
+
+.social-feeds .cta-button {
+  width: 100%;
+  max-width: 300px;
+}
+
+@media (max-width: 768px) {
+  .social-feeds {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Remove carousel specific styles */
+.social-carousel,
+.social-carousel-container,
+#carouselPrev,
+#carouselNext {
+  display: none;
+}
+
+.social-card {
+  min-width: calc(50% - 1rem);
+  transition: all 0.3s ease;
+}
+
+@media (min-width: 768px) {
+  .social-card {
+    min-width: calc(25% - 1.5rem);
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-primary-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-accent-primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent-secondary);
+}

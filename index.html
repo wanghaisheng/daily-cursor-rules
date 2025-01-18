@@ -1,0 +1,1291 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Primary Meta Tags -->
+  <title>Cursor Rules: Ultimate Web Development Interaction Guidelines</title>
+  <meta name="description" content="Master cursor interaction design with Cursor Rules: The ultimate guide to enhancing web user experience through intelligent cursor behaviors, hover states, and interactive design patterns.">
+  <meta name="keywords" content="cursor rules, web interaction design, cursor behavior, hover states, user experience, interactive web design, UX guidelines, front-end development, cursor styling, web accessibility">
+  <meta name="author" content="Cursor Rules Team">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://cursorrules.com/">
+  <meta property="og:title" content="Cursor Rules: Revolutionizing Web Interaction Design">
+  <meta property="og:description" content="Discover advanced cursor interaction techniques that transform digital experiences. Learn how strategic cursor design improves usability, engagement, and accessibility.">
+  <meta property="og:image" content="https://cursorrules.com/images/social-preview.png">
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cursor Rules: The Definitive Guide to Web Cursor Interaction">
+  <meta name="twitter:description" content="Unlock the power of intelligent cursor design. Expert strategies for creating intuitive, engaging, and accessible web interfaces.">
+  <meta name="twitter:image" content="https://cursorrules.com/images/social-preview.png">
+  
+  <!-- Canonical Link -->
+  <link rel="canonical" href="https://cursorrules.com/">
+  
+  <!-- Schema.org Markup -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Cursor Rules",
+    "alternateName": "Web Interaction Guidelines",
+    "url": "https://cursorrules.com",
+    "description": "A comprehensive resource for mastering cursor interaction best practices in web development",
+    "keywords": ["cursor rule", "web interaction", "user experience", "cursor design", "web development guidelines"],
+    "author": {
+      "@type": "Organization",
+      "name": "Cursor Rules Team"
+    }
+  }
+  </script>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script type="module" src="app.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      /* Color Palette */
+      --color-primary-bg: #f8f8f8;        /* Very Light Gray */
+      --color-secondary-bg: #f2f0ff;      /* Light Lavender */
+      --color-tertiary-bg: #e0e0e0;       /* Medium Light Gray */
+      
+      --color-primary-text: #212121;      /* Very Dark Gray */
+      --color-secondary-text: #555555;    /* Medium Gray */
+      
+      --color-accent-primary: #674ea7;    /* Medium Violet/Purple */
+      --color-accent-secondary: #00bcd4;  /* Cyan/Teal */
+      
+      --color-white: #ffffff;
+    }
+
+    * {
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background-color: var(--color-primary-bg);
+      color: var(--color-primary-text);
+      line-height: 1.6;
+      padding-top: 60px; /* Height of nav + some padding */
+    }
+
+    .header-gradient {
+      background: linear-gradient(135deg, var(--color-secondary-bg) 0%, color-mix(in srgb, var(--color-secondary-bg) 90%, var(--color-white)) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header-gradient::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at center, rgba(103, 78, 167, 0.1), transparent 50%);
+      animation: pulse 10s infinite alternate;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(0.9);
+        opacity: 0.7;
+      }
+      100% {
+        transform: scale(1.1);
+        opacity: 0.9;
+      }
+    }
+
+    .rules-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    @media (min-width: 768px) {
+      .rules-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .rule-card {
+      background-color: var(--color-white);
+      border: 1px solid var(--color-tertiary-bg);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .rule-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(103, 78, 167, 0.2);
+    }
+
+    .category-filter {
+      background-color: var(--color-primary-bg);
+      color: var(--color-primary-text);
+      border: 1px solid var(--color-tertiary-bg);
+    }
+
+    .category-filter.active {
+      background-color: var(--color-accent-primary);
+      color: var(--color-white);
+    }
+
+    .cta-button {
+      background-color: var(--color-accent-primary);
+      color: var(--color-white);
+      transition: all 0.3s ease;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 7px 14px rgba(103, 78, 167, 0.3);
+    }
+
+    #ruleDetailModal {
+      background: rgba(242, 240, 255, 0.9);
+      backdrop-filter: blur(10px);
+    }
+
+    #ruleDetailContent {
+      background-color: var(--color-white);
+      border: 1px solid var(--color-tertiary-bg);
+      box-shadow: 0 20px 50px rgba(103, 78, 167, 0.2);
+      max-height: 160vh; /* Set initial max height */
+      overflow-y: auto; /* Ensure scrolling */
+    }
+
+    #ruleModalBody {
+      background-color: var(--color-secondary-bg);
+      max-height: 140vh;
+      overflow-y: auto;
+      color: var(--color-primary-text);
+    }
+
+    .nav-link {
+      color: var(--color-primary-text);
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover {
+      color: var(--color-accent-primary);
+    }
+
+    #search-input {
+      background-color: var(--color-white);
+      color: var(--color-primary-text);
+      border: 1px solid var(--color-tertiary-bg);
+    }
+
+    /* Scrollbar styling for future-forward look */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--color-primary-bg);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--color-accent-primary);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--color-accent-secondary);
+    }
+    
+    #community .qr-code {
+      padding: 1rem;
+      background: white;
+      border-radius: 0.5rem;
+    }
+
+    #community .qr-code svg {
+      width: 160px;
+      height: 160px;
+    }
+
+    #community .cta-button {
+      background-color: var(--color-accent-primary);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 0.375rem;
+      transition: all 0.3s ease;
+    }
+
+    #community .cta-button:hover {
+      transform: translateY(-2px);
+      background-color: color-mix(in srgb, var(--color-accent-primary) 90%, black);
+    }
+
+    #community .bg-secondary-bg {
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    #community .bg-secondary-bg:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(103, 78, 167, 0.1);
+    }
+
+    .nav-container {
+      position: fixed; /* Change from sticky to fixed */
+      top: 0;
+      left: 0;
+      right: 0;
+      background: white;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      z-index: 1000; /* Increase z-index to ensure it stays on top */
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 1rem;
+      padding: 1rem;
+      overflow-x: auto;
+      max-width: 1280px; /* Match container width */
+      margin: 0 auto; /* Center the menu */
+    }
+
+    @media (max-width: 768px) {
+      .nav-menu {
+        gap: 0.5rem;
+        padding: 0.5rem;
+      }
+
+      .nav-link {
+        padding: 0.5rem;
+        font-size: 0.875rem;
+      }
+      
+      body {
+        padding-top: 48px; /* Smaller padding for mobile */
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="nav-container">
+    <nav class="nav-menu">
+      <a href="#rules-container" class="nav-link">
+        <i class="ri-list-check mr-2"></i>Rules
+      </a>
+      <a href="#setup-guide" class="nav-link">
+        <i class="ri-settings-4-line mr-2"></i>Setup
+      </a>
+      <a href="#twitter-feed" class="nav-link">
+        <i class="ri-twitter-fill mr-2"></i>Twitter
+      </a>
+      <a href="#youtube-feed" class="nav-link">
+        <i class="ri-youtube-fill mr-2"></i>YouTube
+      </a>
+      <a href="#jike-feed" class="nav-link">
+        <i class="ri-message-3-fill mr-2"></i>Jike
+      </a>
+    </nav>
+  </div>
+
+  <div class="container mx-auto px-4 py-8">
+    <header id="site-header" class="mb-8">
+      <div class="header-gradient rounded-lg shadow-2xl p-8 mb-6">
+        <div class="flex flex-col md:flex-row items-center justify-between relative z-10">
+          <div class="md:w-2/3">
+            <h1 class="text-4xl font-bold mb-4 flex items-center">
+              <i class="ri-cursor-line mr-3 text-accent-primary"></i>Cursor Rules
+            </h1>
+            <h2 class="text-2xl mb-4 opacity-90 font-semibold text-gray-700">
+              Mastering the Art of Web Cursor Interaction Design
+            </h2>
+            <p class="text-lg mb-6 text-gray-600 leading-relaxed">
+              Transform your web interfaces with strategic cursor behaviors. Learn how intelligent cursor design can dramatically enhance user experience, improve accessibility, and create more intuitive digital interactions.
+            </p>
+            <div class="flex space-x-4">
+              <a href="https://github.com/PatrickJS/awesome-cursorrules" 
+                 target="_blank" 
+                 class="cta-button px-6 py-3 rounded-md flex items-center text-lg font-semibold">
+                <i class="ri-github-fill mr-2"></i> Explore on GitHub
+              </a>
+              <a href="#rules-container" 
+                 class="border border-tertiary-bg text-primary-text px-6 py-3 rounded-md hover:bg-accent-primary hover:text-white transition flex items-center text-lg font-semibold">
+                <i class="ri-list-check mr-2"></i> Browse Cursor Rules
+              </a>
+            </div>
+            
+            <div class="mt-6 bg-secondary-bg p-4 rounded-lg">
+              <h3 class="text-xl font-semibold mb-3 text-accent-primary">What Are Cursor Rules?</h3>
+              <p class="text-primary-text opacity-90">
+                Cursor rules are advanced design guidelines that define how user cursors interact with web elements. They go beyond simple hover states, creating a language of interaction that improves usability, provides visual feedback, and enhances the overall user experience.
+              </p>
+            </div>
+          </div>
+          
+          <!-- Existing SVG remains the same -->
+          <div class="hidden md:block">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 250" width="250" height="250" class="opacity-80">
+              <defs>
+                <linearGradient id="techGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#00bcd4;stop-opacity:0.5" />
+                  <stop offset="100%" style="stop-color:#aed581;stop-opacity:0.5" />
+                </linearGradient>
+              </defs>
+              <circle cx="125" cy="125" r="110" fill="url(#techGradient)" />
+              <path d="M125 15 L125 235 M15 125 L235 125" stroke="#00bcd4" stroke-width="2" stroke-dasharray="10 10"/>
+              <circle cx="125" cy="125" r="70" fill="rgba(0,188,212,0.1)" />
+              <circle cx="125" cy="125" r="30" fill="#aed581" />
+            </svg>
+          </div>
+        </div>
+        
+        <!-- Existing last updated section -->
+        <div class="mt-4 text-sm opacity-70 flex items-center">
+          <i class="ri-verified-badge-fill mr-2 text-accent-primary"></i>
+          Last Updated: <span id="last-updated-date" class="ml-2 text-primary-text">Loading...</span>
+        </div>
+      </div>
+    </header>
+    
+    <nav id="site-nav" class="mb-8"></nav>
+    
+    <section id="intro" class="mb-8"></section>
+    
+    <section id="how-to" class="mb-8"></section>
+
+    <section id="site-content">
+      <div class="mb-4">
+        <input 
+          type="text" 
+          id="search-input" 
+          placeholder="Search rules..." 
+          class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-tertiary-bg"
+        >
+      </div>
+      
+      <div class="mb-4 flex flex-wrap gap-2" id="category-filters"></div>
+      
+      <div id="rules-container"></div>
+      <div id="pagination-container" class="flex justify-center mt-4"></div>
+    </section>
+    
+    <section id="why-cursorrules" class="mt-8"></section>
+
+    <section id="setup-guide" class="mt-8">
+      <div class="bg-white shadow rounded p-6">
+        <h2 class="text-2xl font-semibold mb-6 text-gray-800">Cursor Setup Guide</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="p-6 rounded-lg hover:shadow-lg transition-all">
+            <div class="text-accent-primary mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-code">
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">Quick Start</h3>
+            <p class="text-gray-600 mb-4">Get your cursor system up and running in minutes with our optimized setup process.</p>
+            <div class="text-sm p-4 bg-secondary-bg rounded-lg relative">
+              <button class="absolute top-2 right-2 p-1 text-gray-500 hover:text-accent-primary transition" 
+                      onclick="copyCode(this)">
+                <i class="ri-file-copy-line text-lg"></i>
+              </button>
+              <pre class="overflow-auto max-h-[480px]"><code class="language-bash">npm install cursor-rules</code></pre>
+            </div>
+          </div>
+          
+          <div class="p-6 rounded-lg hover:shadow-lg transition-all">
+            <div class="text-accent-primary mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-settings">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">Custom Configuration</h3>
+            <p class="text-gray-600 mb-4">Tailor your cursor system to match your project's unique requirements.</p>
+            <div class="text-sm p-4 bg-secondary-bg rounded-lg relative">
+              <button class="absolute top-2 right-2 p-1 text-gray-500 hover:text-accent-primary transition" 
+                      onclick="copyCode(this)">
+                <i class="ri-file-copy-line text-lg"></i>
+              </button>
+              <pre class="overflow-auto max-h-[480px]"><code class="language-javascript">// AI-Assisted Development Configuration
+import { configureAI } from 'cursor-rules';
+
+configureAI({
+  systemPrompt: `
+    You are a technical writer tasked with creating a comprehensive guide document for a new software development project, aimed at maximizing the effectiveness of using AI-powered tools like Cursor and Claude. The document should be titled "AI-Assisted Development Guidelines" and address the following points, formatted in markdown:
+
+    **1. Introduction:**
+    *   Start with a brief introduction that emphasizes the importance of a structured approach to AI-assisted development.
+    *   Highlight that the guidelines are designed to help developers leverage AI tools efficiently, minimize token usage, and reduce errors.
+
+    **2. Project Setup:**
+    *   Explain the importance of creating a project map (\`fileNames.md\`).
+    *   Describe how \`fileNames.md\` should list all files and directories, including a one-line description of each component's purpose and function.
+    *   Explain the role of the documentation folder and describe how the following files should be structured: \`prd.md\`, \`app-flow.md\`, \`backend-structure.md\`, \`frontend-guidelines.md\`, \`tech-stack.md\`, and \`file-structure.md\`. (briefly mention what they should outline).
+
+    **3. Claude as "Software Architect":**
+    *   Explain how to set up a dedicated Claude project for refining prompts.
+    *   Describe what should be added to the Claude project's knowledge base:
+        *   Full file structure (\`fileNames.md\`).
+        *   Master FRD (Functional Requirements Document).
+        *   Component-specific FRDs.
+        *   Documentation for Cursor/bolt.new.
+
+    **4. Structured Prompting Flow:**
+    *   Explain the two-step prompting flow involving a "system prompt" and an "execution prompt".
+    *   Describe how to use the following pattern:
+        *   Use a system prompt to set context with Claude.
+        *   Use execution prompts to ask Claude to analyze the problem, identify impacted files (using \`fileNames.md\` references), and suggest efficient approaches.
+    *   Provide a detailed example of how to structure an execution prompt, like "We need to add email validation to the login form. Refer to \`src/components/login.jsx\` from \`fileNames.md\` and \`Documentation/FRD/auth.md\` from project knowledge. Please suggest an efficient approach for \`bolt.new\` to modify that file with the email validation logic."
+
+    **5. Cursor Prompting Techniques:**
+    *   Describe the following Cursor prompting techniques, provide their associated prompt, and explain how to use them:
+        *   **"Fix Errors"**:
+            *   Explain that AI models sometimes miss details and trigger error cycles.
+            *   Provide this prompt: "Analyze this error. Identify its cause and create a step-by-step plan to resolve the issue."
+        *   **"New Feature"**:
+            *   Explain that AI needs to be re-contextualized for each component scope.
+            *   Provide the prompt: "Read the description in \`@<document-name>\` and create a plan for the implementation. Before proceeding, write an implementation plan. Explain what you are going to change before doing it."
+        *   **Response Structure**:
+            *   Explain how to provide updates and context to the AI.
+            *   Provide examples of update, next task, and tagging the relevant documentation (e.g., "The header is now aligned. Now we need a login button. Check @login-doc and explain your approach").
+
+    **6. Progress Tracking:**
+    *   Describe the purpose of the \`progress.md\` file and the following prompt: "At the end of each completed step, log your work in \`@progress.md\`. What features were implemented, what errors occurred, and how were they fixed? Answer these three questions sequentially and do not miss information."
+    *   Explain the purpose of the \`project-status.md\` file and the following prompt: "At the end of each session, log your work in \`@project-status.md\`. Review the \`@progress.md\` file to summarize all work and describe what was accomplished this session. Create a detailed report for the next working session, so there is a complete overview for the next session."
+
+    **7. Cursor Agent Hack:**
+    *  Explain how the cursor agent can potentially over-perform
+    *  Provide the following guidance to prevent that issue: "Read @(document name) to determine the scope of the function. Using chain of thought logic, create a step-by-step implementation plan. Outline each part of the functionality with details, providing both high level overview. Break those sections into detailed numbered steps. This will give a plan that you can approve and ensure that the actions conform with the requirements".
+
+    **8. `.bolt/ignore` Optimization:**
+    *  Explain the need to minimize context for LLM
+    *   Explain the use of the `.bolt/ignore` file and how to identify files and directories to exclude.
+
+    **9.  Conclusion**
+    *   Reiterate the overall goal of this approach and how it enables developers to work efficiently.
+
+    Format all sections as Markdown for readability.
+  `,
+  contextFiles: [
+    'fileNames.md',
+    'tech-stack.md',
+    'frontend-guidelines.md'
+  ],
+  optimization: {
+    tokenLimit: 4000,
+    ignorePatterns: ['node_modules', '.git']
+  }
+});</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="how-it-works" class="mt-8 bg-white shadow rounded p-6">
+      <h2 class="text-2xl font-semibold mb-4 text-gray-800">How It Works</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-secondary-bg p-6 rounded-lg">
+          <div class="text-accent-primary text-3xl mb-4">
+            <i class="ri-stack-line"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Comprehensive Rules</h3>
+          <p class="text-gray-600">Explore our extensive collection of cursor behavior patterns and best practices.</p>
+        </div>
+        <div class="bg-secondary-bg p-6 rounded-lg">
+          <div class="text-accent-primary text-3xl mb-4">
+            <i class="ri-search-line"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Easy Navigation</h3>
+          <p class="text-gray-600">Quickly find what you need with our intuitive search and filtering system.</p>
+        </div>
+        <div class="bg-secondary-bg p-6 rounded-lg">
+          <div class="text-accent-primary text-3xl mb-4">
+            <i class="ri-lightbulb-flash-line"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Expert Insights</h3>
+          <p class="text-gray-600">Learn from curated examples and in-depth explanations for each rule.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="mt-8">
+      <div class="bg-white shadow rounded p-6">
+        <h2 class="text-2xl font-semibold mb-4 text-gray-800">Key Features</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="flex items-start">
+            <div class="text-accent-primary mr-4">
+              <i class="ri-checkbox-circle-line text-2xl"></i>
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold mb-2">Interactive Examples</h3>
+              <p class="text-gray-600">Experience each cursor behavior through live, interactive demonstrations.</p>
+            </div>
+          </div>
+          <div class="flex items-start">
+            <div class="text-accent-primary mr-4">
+              <i class="ri-download-cloud-line text-2xl"></i>
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold mb-2">Downloadable Resources</h3>
+              <p class="text-gray-600">Access ready-to-use code snippets and implementation guides.</p>
+            </div>
+          </div>
+          <div class="flex items-start">
+            <div class="text-accent-primary mr-4">
+              <i class="ri-shield-check-line text-2xl"></i>
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold mb-2">Accessibility Focused</h3>
+              <p class="text-gray-600">Ensure inclusive designs with accessibility-first cursor patterns.</p>
+            </div>
+          </div>
+          <div class="flex items-start">
+            <div class="text-accent-primary mr-4">
+              <i class="ri-community-line text-2xl"></i>
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold mb-2">Community Driven</h3>
+              <p class="text-gray-600">Contribute and learn from a growing community of UX professionals.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="mt-8">
+      <div class="bg-white shadow rounded p-6">
+        <h2 class="text-2xl font-semibold mb-4 text-gray-800">Frequently Asked Questions</h2>
+        <div class="space-y-4">
+          <div class="faq-item">
+            <button class="flex justify-between items-center w-full text-left p-4 hover:bg-secondary-bg rounded-lg transition-colors">
+              <span class="font-medium">What are cursor rules?</span>
+              <i class="ri-arrow-down-s-line text-xl"></i>
+            </button>
+            <div class="faq-content px-4 mt-2 text-gray-600 hidden">
+              Cursor rules are guidelines and best practices that govern how cursor behaviors should be implemented in web interfaces to enhance user experience and accessibility.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="flex justify-between items-center w-full text-left p-4 hover:bg-secondary-bg rounded-lg transition-colors">
+              <span class="font-medium">Who is this resource for?</span>
+              <i class="ri-arrow-down-s-line text-xl"></i>
+            </button>
+            <div class="faq-content px-4 mt-2 text-gray-600 hidden">
+              This resource is valuable for web developers, UX designers, product managers, and anyone involved in creating intuitive and accessible web interfaces.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="flex justify-between items-center w-full text-left p-4 hover:bg-secondary-bg rounded-lg transition-colors">
+              <span class="font-medium">How often is the content updated?</span>
+              <i class="ri-arrow-down-s-line text-xl"></i>
+            </button>
+            <div class="faq-content px-4 mt-2 text-gray-600 hidden">
+              Our content is regularly updated to reflect the latest web standards and best practices, with community contributions continuously improving the resource.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="flex justify-between items-center w-full text-left p-4 hover:bg-secondary-bg rounded-lg transition-colors">
+              <span class="font-medium">Can I contribute to this project?</span>
+              <i class="ri-arrow-down-s-line text-xl"></i>
+            </button>
+            <div class="faq-content px-4 mt-2 text-gray-600 hidden">
+              Yes! We welcome contributions from the community. Visit our GitHub repository to learn how you can contribute.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="community" class="mt-8">
+      <div class="bg-white shadow rounded p-6">
+        <h2 class="text-2xl font-semibold mb-6 text-gray-800">Join Our Community</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- QR Code Section -->
+          <div class="bg-secondary-bg p-6 rounded-lg flex flex-col items-center">
+            <h3 class="text-xl font-semibold mb-4 text-accent-primary">Scan to Join</h3>
+            <div class="qr-code p-4 bg-white rounded-lg shadow-sm mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 29 29">
+                <path fill="#000" d="M0 0h8v3H2v3h6v2H0zm6 5h3v8H6zm15-5h8v8h-5V6h-3zm3 3v3h5V3zM0-24h8v3H2v3h6v2H0V-24zm6 5h3v8H6V-19zm15-5h8v8h-3v-5h-5zm3 3v3h5v-3z"/>
+              </svg>
+            </div>
+            <p class="text-center text-gray-600">Use your mobile device to scan and join our community discussion</p>
+          </div>
+
+          <!-- Community Links Section -->
+          <div class="grid grid-cols-1 gap-4">
+            <div class="bg-secondary-bg p-6 rounded-lg">
+              <div class="flex items-center space-x-4">
+                <div class="text-accent-primary text-3xl">
+                  <i class="ri-discord-fill"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-semibold mb-2">Discord</h3>
+                  <p class="text-gray-600">Join our live community discussions and get real-time support</p>
+                  <a href="https://discord.cursorrules.com" class="cta-button mt-3 px-4 py-2 inline-block">
+                    Join Discord
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-secondary-bg p-6 rounded-lg">
+              <div class="flex items-center space-x-4">
+                <div class="text-accent-primary text-3xl">
+                  <i class="ri-linkedin-box-fill"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-semibold mb-2">LinkedIn</h3>
+                  <p class="text-gray-600">Connect with professionals and stay updated with industry news</p>
+                  <a href="https://linkedin.cursorrules.com" class="cta-button mt-3 px-4 py-2 inline-block">
+                    Follow on LinkedIn
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="social-feeds" class="mt-8">
+      <!-- Twitter Feed -->
+      <div class="twitter-feed-carousel relative">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-2xl font-semibold text-gray-800 flex items-center">
+            <i class="ri-twitter-fill text-accent-primary mr-2"></i> Twitter Updates
+          </h2>
+          <div class="feed-tabs flex space-x-2">
+            <button class="tab-item px-3 py-1 rounded-full border hover:bg-gray-100 active" data-filter="all">All</button>
+            <button class="tab-item px-3 py-1 rounded-full border hover:bg-gray-100" data-filter="cursor">Cursor</button>
+            <button class="tab-item px-3 py-1 rounded-full border hover:bg-gray-100" data-filter="bolt">Bolt</button>
+            <button class="tab-item px-3 py-1 rounded-full border hover:bg-gray-100" data-filter="winsurf">Winsurf</button>
+            <button class="tab-item px-3 py-1 rounded-full border hover:bg-gray-100" data-filter="monica">Monica</button>
+            <button class="tab-item px-3 py-1 rounded-full border hover:bg-gray-100" data-filter="other">Other</button>
+          </div>
+        </div>
+        <div class="relative overflow-hidden">
+          <div class="twitter-carousel-track flex gap-4 transition-transform duration-300">
+            <div class="twitter-card min-w-[calc(50%-0.5rem)] md:min-w-[calc(25%-0.75rem)] bg-white rounded-lg shadow p-4">
+              <div class="flex items-center mb-2">
+                <div class="w-8 h-8 bg-gray-300 rounded-full mr-2"></div>
+                <div>
+                  <p class="font-medium">CursorRules</p>
+                  <p class="text-xs text-gray-500">@cursorrules</p>
+                </div>
+              </div>
+              <p class="text-gray-600">New cursor interaction pattern added: "Soft Follow" - creates a subtle connection between cursor and element movement.</p>
+              <div class="text-sm text-gray-500 mt-2">2 hours ago</div>
+            </div>
+            <div class="twitter-card min-w-[calc(50%-0.5rem)] md:min-w-[calc(25%-0.75rem)] bg-white rounded-lg shadow p-4">
+              <div class="flex items-center mb-2">
+                <div class="w-8 h-8 bg-gray-300 rounded-full mr-2"></div>
+                <div>
+                  <p class="font-medium">CursorRules</p>
+                  <p class="text-xs text-gray-500">@cursorrules</p>
+                </div>
+              </div>
+              <p class="text-gray-600">New cursor interaction pattern added: "Soft Follow" - creates a subtle connection between cursor and element movement.</p>
+              <div class="text-sm text-gray-500 mt-2">2 hours ago</div>
+            </div>
+            <div class="twitter-card min-w-[calc(50%-0.5rem)] md:min-w-[calc(25%-0.75rem)] bg-white rounded-lg shadow p-4">
+              <div class="flex items-center mb-2">
+                <div class="w-8 h-8 bg-gray-300 rounded-full mr-2"></div>
+                <div>
+                  <p class="font-medium">CursorRules</p>
+                  <p class="text-xs text-gray-500">@cursorrules</p>
+                </div>
+              </div>
+              <p class="text-gray-600">New cursor interaction pattern added: "Soft Follow" - creates a subtle connection between cursor and element movement.</p>
+              <div class="text-sm text-gray-500 mt-2">2 hours ago</div>
+            </div>
+            <div class="twitter-card min-w-[calc(50%-0.5rem)] md:min-w-[calc(25%-0.75rem)] bg-white rounded-lg shadow p-4">
+              <div class="flex items-center mb-2">
+                <div class="w-8 h-8 bg-gray-300 rounded-full mr-2"></div>
+                <div>
+                  <p class="font-medium">CursorRules</p>
+                  <p class="text-xs text-gray-500">@cursorrules</p>
+                </div>
+              </div>
+              <p class="text-gray-600">New cursor interaction pattern added: "Soft Follow" - creates a subtle connection between cursor and element movement.</p>
+              <div class="text-sm text-gray-500 mt-2">2 hours ago</div>
+            </div>
+            <div class="twitter-card min-w-[calc(50%-0.5rem)] md:min-w-[calc(25%-0.75rem)] bg-white rounded-lg shadow p-4">
+              <div class="flex items-center mb-2">
+                <div class="w-8 h-8 bg-gray-300 rounded-full mr-2"></div>
+                <div>
+                  <p class="font-medium">CursorRules</p>
+                  <p class="text-xs text-gray-500">@cursorrules</p>
+                </div>
+              </div>
+              <p class="text-gray-600">New cursor interaction pattern added: "Soft Follow" - creates a subtle connection between cursor and element movement.</p>
+              <div class="text-sm text-gray-500 mt-2">2 hours ago</div>
+            </div>
+            <div class="twitter-card min-w-[calc(50%-0.5rem)] md:min-w-[calc(25%-0.75rem)] bg-white rounded-lg shadow p-4">
+              <div class="flex items-center mb-2">
+                <div class="w-8 h-8 bg-gray-300 rounded-full mr-2"></div>
+                <div>
+                  <p class="font-medium">CursorRules</p>
+                  <p class="text-xs text-gray-500">@cursorrules</p>
+                </div>
+              </div>
+              <p class="text-gray-600">New cursor interaction pattern added: "Soft Follow" - creates a subtle connection between cursor and element movement.</p>
+              <div class="text-sm text-gray-500 mt-2">2 hours ago</div>
+            </div>
+            <div class="twitter-card min-w-[calc(50%-0.5rem)] md:min-w-[calc(25%-0.75rem)] bg-white rounded-lg shadow p-4">
+              <div class="flex items-center mb-2">
+                <div class="w-8 h-8 bg-gray-300 rounded-full mr-2"></div>
+                <div>
+                  <p class="font-medium">CursorRules</p>
+                  <p class="text-xs text-gray-500">@cursorrules</p>
+                </div>
+              </div>
+              <p class="text-gray-600">New cursor interaction pattern added: "Soft Follow" - creates a subtle connection between cursor and element movement.</p>
+              <div class="text-sm text-gray-500 mt-2">2 hours ago</div>
+            </div>
+            <div class="twitter-card min-w-[calc(50%-0.5rem)] md:min-w-[calc(25%-0.75rem)] bg-white rounded-lg shadow p-4">
+              <div class="flex items-center mb-2">
+                <div class="w-8 h-8 bg-gray-300 rounded-full mr-2"></div>
+                <div>
+                  <p class="font-medium">CursorRules</p>
+                  <p class="text-xs text-gray-500">@cursorrules</p>
+                </div>
+              </div>
+              <p class="text-gray-600">New cursor interaction pattern added: "Soft Follow" - creates a subtle connection between cursor and element movement.</p>
+              <div class="text-sm text-gray-500 mt-2">2 hours ago</div>
+            </div>
+          </div>
+          <button class="carousel-prev absolute left-0 top-1/2 -translate-y-1/2 bg-white rounded-full shadow p-2 hover:bg-gray-100 transition">
+            <i class="ri-arrow-left-s-line text-xl"></i>
+          </button>
+          <button class="carousel-next absolute right-0 top-1/2 -translate-y-1/2 bg-white rounded-full shadow p-2 hover:bg-gray-100 transition">
+            <i class="ri-arrow-right-s-line text-xl"></i>
+          </button>
+        </div>
+        <div class="carousel-dots"></div>
+      </div>
+
+      <!-- YouTube Feed -->
+      <div class="youtube-feed-carousel relative mt-8">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-2xl font-semibold text-gray-800 flex items-center">
+            <i class="ri-youtube-fill text-accent-primary mr-2"></i> YouTube Updates
+          </h2>
+          <div class="feed-tabs flex space-x-2">
+            <button class="tab-item px-3 py-1 rounded-full border hover:bg-gray-100 active" data-filter="all">All</button>
+            <button class="tab-item px-3 py-1 rounded-full border hover:bg-gray-100" data-filter="cursor">Cursor</button>
+            <button class="tab-item px-3 py-1 rounded-full border hover:bg-gray-100" data-filter="bolt">Bolt</button>
+            <button class="tab-item px-3 py-1 rounded-full border hover:bg-gray-100" data-filter="winsurf">Winsurf</button>
+            <button class="tab-item px-3 py-1 rounded-full border hover:bg-gray-100" data-filter="monica">Monica</button>
+            <button class="tab-item px-3 py-1 rounded-full border hover:bg-gray-100" data-filter="other">Other</button>
+          </div>
+        </div>
+        <div class="relative overflow-hidden">
+          <div class="youtube-carousel-track flex gap-4 transition-transform duration-300">
+            <div class="youtube-card min-w-[calc(50%-0.5rem)] md:min-w-[calc(25%-0.75rem)] bg-white rounded-lg shadow p-4">
+              <div class="flex items-center mb-2">
+                <div class="w-12 h-12 bg-gray-300 rounded-md mr-2"></div>
+                <div>
+                  <p class="font-medium">Advanced Cursor Techniques</p>
+                  <p class="text-sm text-gray-500">15 min · 2 days ago</p>
+                </div>
+              </div>
+              <p class="text-gray-600">Explore advanced cursor interaction strategies in our latest tutorial video.</p>
+            </div>
+            <div class="youtube-card min-w-[calc(50%-0.5rem)] md:min-w-[calc(25%-0.75rem)] bg-white rounded-lg shadow p-4">
+              <div class="flex items-center mb-2">
+                <div class="w-12 h-12 bg-gray-300 rounded-md mr-2"></div>
+                <div>
+                  <p class="font-medium">Advanced Cursor Techniques</p>
+                  <p class="text-sm text-gray-500">15 min · 2 days ago</p>
+                </div>
+              </div>
+              <p class="text-gray-600">Explore advanced cursor interaction strategies in our latest tutorial video.</p>
+            </div>
+            <div class="youtube-card min-w-[calc(50%-0.5rem)] md:min-w-[calc(25%-0.75rem)] bg-white rounded-lg shadow p-4">
+              <div class="flex items-center mb-2">
+                <div class="w-12 h-12 bg-gray-300 rounded-md mr-2"></div>
+                <div>
+                  <p class="font-medium">Advanced Cursor Techniques</p>
+                  <p class="text-sm text-gray-500">15 min · 2 days ago</p>
+                </div>
+              </div>
+              <p class="text-gray-600">Explore advanced cursor interaction strategies in our latest tutorial video.</p>
+            </div>
+            <div class="youtube-card min-w-[calc(50%-0.5rem)] md:min-w-[calc(25%-0.75rem)] bg-white rounded-lg shadow p-4">
+              <div class="flex items-center mb-2">
+                <div class="w-12 h-12 bg-gray-300 rounded-md mr-2"></div>
+                <div>
+                  <p class="font-medium">Advanced Cursor Techniques</p>
+                  <p class="text-sm text-gray-500">15 min · 2 days ago</p>
+                </div>
+              </div>
+              <p class="text-gray-600">Explore advanced cursor interaction strategies in our latest tutorial video.</p>
+            </div>
+            <div class="youtube-card min-w-[calc(50%-0.5rem)] md:min-w-[calc(25%-0.75rem)] bg-white rounded-lg shadow p-4">
+              <div class="flex items-center mb-2">
+                <div class="w-12 h-12 bg-gray-300 rounded-md mr-2"></div>
+                <div>
+                  <p class="font-medium">Advanced Cursor Techniques</p>
+                  <p class="text-sm text-gray-500">15 min · 2 days ago</p>
+                </div>
+              </div>
+              <p class="text-gray-600">Explore advanced cursor interaction strategies in our latest tutorial video.</p>
+            </div>
+            <div class="youtube-card min-w-[calc(50%-0.5rem)] md:min-w-[calc(25%-0.75rem)] bg-white rounded-lg shadow p-4">
+              <div class="flex items-center mb-2">
+                <div class="w-12 h-12 bg-gray-300 rounded-md mr-2"></div>
+                <div>
+                  <p class="font-medium">Advanced Cursor Techniques</p>
+                  <p class="text-sm text-gray-500">15 min · 2 days ago</p>
+                </div>
+              </div>
+              <p class="text-gray-600">Explore advanced cursor interaction strategies in our latest tutorial video.</p>
+            </div>
+          </div>
+          <button class="carousel-prev absolute left-0 top-1/2 -translate-y-1/2 bg-white rounded-full shadow p-2 hover:bg-gray-100 transition">
+            <i class="ri-arrow-left-s-line text-xl"></i>
+          </button>
+          <button class="carousel-next absolute right-0 top-1/2 -translate-y-1/2 bg-white rounded-full shadow p-2 hover:bg-gray-100 transition">
+            <i class="ri-arrow-right-s-line text-xl"></i>
+          </button>
+        </div>
+        <div class="carousel-dots"></div>
+      </div>
+
+      <!-- Jike Feed -->
+      <div class="jike-feed-carousel relative mt-8">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-2xl font-semibold text-gray-800 flex items-center">
+            <i class="ri-message-3-fill text-accent-primary mr-2"></i> Jike Updates
+          </h2>
+          <div class="feed-tabs flex space-x-2">
+            <button class="tab-item px-3 py-1 rounded-full border hover:bg-gray-100 active" data-filter="all">All</button>
+            <button class="tab-item px-3 py-1 rounded-full border hover:bg-gray-100" data-filter="cursor">Cursor</button>
+            <button class="tab-item px-3 py-1 rounded-full border hover:bg-gray-100" data-filter="bolt">Bolt</button>
+            <button class="tab-item px-3 py-1 rounded-full border hover:bg-gray-100" data-filter="winsurf">Winsurf</button>
+            <button class="tab-item px-3 py-1 rounded-full border hover:bg-gray-100" data-filter="monica">Monica</button>
+            <button class="tab-item px-3 py-1 rounded-full border hover:bg-gray-100" data-filter="other">Other</button>
+          </div>
+        </div>
+        <div class="relative overflow-hidden">
+          <div class="jike-carousel-track flex gap-4 transition-transform duration-300">
+            <div class="jike-card min-w-[calc(50%-0.5rem)] md:min-w-[calc(25%-0.75rem)] bg-white rounded-lg shadow p-4">
+              <div class="flex items-center mb-2">
+                <div class="w-8 h-8 bg-gray-300 rounded-full mr-2"></div>
+                <span class="font-medium">DesignerPro</span>
+              </div>
+              <p class="text-gray-600">The categorization system in Cursor Rules has helped me organize my interaction patterns beautifully.</p>
+              <div class="text-sm text-gray-500 mt-2">3 hours ago</div>
+            </div>
+            <div class="jike-card min-w-[calc(50%-0.5rem)] md:min-w-[calc(25%-0.75rem)] bg-white rounded-lg shadow p-4">
+              <div class="flex items-center mb-2">
+                <div class="w-8 h-8 bg-gray-300 rounded-full mr-2"></div>
+                <span class="font-medium">DesignerPro</span>
+              </div>
+              <p class="text-gray-600">The categorization system in Cursor Rules has helped me organize my interaction patterns beautifully.</p>
+              <div class="text-sm text-gray-500 mt-2">3 hours ago</div>
+            </div>
+            <div class="jike-card min-w-[calc(50%-0.5rem)] md:min-w-[calc(25%-0.75rem)] bg-white rounded-lg shadow p-4">
+              <div class="flex items-center mb-2">
+                <div class="w-8 h-8 bg-gray-300 rounded-full mr-2"></div>
+                <span class="font-medium">DesignerPro</span>
+              </div>
+              <p class="text-gray-600">The categorization system in Cursor Rules has helped me organize my interaction patterns beautifully.</p>
+              <div class="text-sm text-gray-500 mt-2">3 hours ago</div>
+            </div>
+            <div class="jike-card min-w-[calc(50%-0.5rem)] md:min-w-[calc(25%-0.75rem)] bg-white rounded-lg shadow p-4">
+              <div class="flex items-center mb-2">
+                <div class="w-8 h-8 bg-gray-300 rounded-full mr-2"></div>
+                <span class="font-medium">DesignerPro</span>
+              </div>
+              <p class="text-gray-600">The categorization system in Cursor Rules has helped me organize my interaction patterns beautifully.</p>
+              <div class="text-sm text-gray-500 mt-2">3 hours ago</div>
+            </div>
+            <div class="jike-card min-w-[calc(50%-0.5rem)] md:min-w-[calc(25%-0.75rem)] bg-white rounded-lg shadow p-4">
+              <div class="flex items-center mb-2">
+                <div class="w-8 h-8 bg-gray-300 rounded-full mr-2"></div>
+                <span class="font-medium">DesignerPro</span>
+              </div>
+              <p class="text-gray-600">The categorization system in Cursor Rules has helped me organize my interaction patterns beautifully.</p>
+              <div class="text-sm text-gray-500 mt-2">3 hours ago</div>
+            </div>
+            <div class="jike-card min-w-[calc(50%-0.5rem)] md:min-w-[calc(25%-0.75rem)] bg-white rounded-lg shadow p-4">
+              <div class="flex items-center mb-2">
+                <div class="w-8 h-8 bg-gray-300 rounded-full mr-2"></div>
+                <span class="font-medium">DesignerPro</span>
+              </div>
+              <p class="text-gray-600">The categorization system in Cursor Rules has helped me organize my interaction patterns beautifully.</p>
+              <div class="text-sm text-gray-500 mt-2">3 hours ago</div>
+            </div>
+            <div class="jike-card min-w-[calc(50%-0.5rem)] md:min-w-[calc(25%-0.75rem)] bg-white rounded-lg shadow p-4">
+              <div class="flex items-center mb-2">
+                <div class="w-8 h-8 bg-gray-300 rounded-full mr-2"></div>
+                <span class="font-medium">DesignerPro</span>
+              </div>
+              <p class="text-gray-600">The categorization system in Cursor Rules has helped me organize my interaction patterns beautifully.</p>
+              <div class="text-sm text-gray-500 mt-2">3 hours ago</div>
+            </div>
+          </div>
+          <button class="carousel-prev absolute left-0 top-1/2 -translate-y-1/2 bg-white rounded-full shadow p-2 hover:bg-gray-100 transition">
+            <i class="ri-arrow-left-s-line text-xl"></i>
+          </button>
+          <button class="carousel-next absolute right-0 top-1/2 -translate-y-1/2 bg-white rounded-full shadow p-2 hover:bg-gray-100 transition">
+            <i class="ri-arrow-right-s-line text-xl"></i>
+          </button>
+        </div>
+        <div class="carousel-dots"></div>
+      </div>
+    </section>
+
+    <style>
+      .feed-tabs .tab-item {
+        font-size: 0.875rem;
+        transition: all 0.2s ease;
+      }
+      
+      .feed-tabs .tab-item.active {
+        background-color: var(--color-accent-primary);
+        color: white;
+        border-color: var(--color-accent-primary);
+      }
+    </style>
+
+    <script>
+      // Add feed filtering functionality
+      document.querySelectorAll('.feed-tabs').forEach(tabsContainer => {
+        const carousel = tabsContainer.closest('[class*="-feed-carousel"]');
+        const track = carousel.querySelector('.carousel-track');
+        
+        tabsContainer.addEventListener('click', (e) => {
+          if (!e.target.classList.contains('tab-item')) return;
+          
+          // Update active tab
+          tabsContainer.querySelectorAll('.tab-item').forEach(tab => tab.classList.remove('active'));
+          e.target.classList.add('active');
+          const filter = e.target.dataset.filter;
+          
+          // Filter items
+          Array.from(track.children).forEach(card => {
+            const cardCategory = card.dataset.category || 'all';
+            if (filter === 'all' || cardCategory === filter) {
+              card.style.display = 'block';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+          
+          // Reinitialize carousel
+          const carouselInstance = carousel.parentElement.carouselInstance;
+          if (carouselInstance) {
+            carouselInstance.recalculate();
+          }
+        });
+      });
+
+      // Add data-category attributes to existing cards
+      const categories = ['cursor', 'bolt', 'winsurf', 'monica', 'other'];
+      document.querySelectorAll('.twitter-card, .youtube-card, .jike-card').forEach(card => {
+        const randomCategory = categories[Math.floor(Math.random() * categories.length)];
+        card.dataset.category = randomCategory;
+      });
+    </script>
+
+    <footer class="mt-16 bg-white shadow-lg">
+      <div class="container mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div class="space-y-4">
+            <h3 class="text-lg font-semibold text-accent-primary">About</h3>
+            <ul class="space-y-2">
+              <li><a href="https://cursorrules.com/about" class="text-gray-600 hover:text-accent-primary transition">Our Mission</a></li>
+              <li><a href="https://cursorrules.com/team" class="text-gray-600 hover:text-accent-primary transition">Team</a></li>
+              <li><a href="https://cursorrules.com/blog" class="text-gray-600 hover:text-accent-primary transition">Blog</a></li>
+            </ul>
+          </div>
+          
+          <div class="space-y-4">
+            <h3 class="text-lg font-semibold text-accent-primary">Resources</h3>
+            <ul class="space-y-2">
+              <li><a href="https://cursorrules.com/docs" class="text-gray-600 hover:text-accent-primary transition">Documentation</a></li>
+              <li><a href="https://cursorrules.com/examples" class="text-gray-600 hover:text-accent-primary transition">Examples</a></li>
+              <li><a href="https://cursorrules.com/tutorials" class="text-gray-600 hover:text-accent-primary transition">Tutorials</a></li>
+            </ul>
+          </div>
+
+          <div class="space-y-4">
+            <h3 class="text-lg font-semibold text-accent-primary">Community</h3>
+            <ul class="space-y-2">
+              <li><a href="https://github.com/PatrickJS/awesome-cursorrules" class="text-gray-600 hover:text-accent-primary transition">GitHub</a></li>
+              <li><a href="https://twitter.com/cursorrules" class="text-gray-600 hover:text-accent-primary transition">Twitter</a></li>
+              <li><a href="https://discord.cursorrules.com" class="text-gray-600 hover:text-accent-primary transition">Discord</a></li>
+            </ul>
+          </div>
+
+          <div class="space-y-4">
+            <h3 class="text-lg font-semibold text-accent-primary">Legal</h3>
+            <ul class="space-y-2">
+              <li><a href="https://cursorrules.com/privacy" class="text-gray-600 hover:text-accent-primary transition">Privacy Policy</a></li>
+              <li><a href="https://cursorrules.com/terms" class="text-gray-600 hover:text-accent-primary transition">Terms of Service</a></li>
+              <li><a href="https://cursorrules.com/license" class="text-gray-600 hover:text-accent-primary transition">License</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="border-t border-gray-200 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+          <div class="flex items-center space-x-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 250 250" class="text-accent-primary">
+              <defs>
+                <linearGradient id="techGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#00bcd4;stop-opacity:0.5" />
+                  <stop offset="100%" style="stop-color:#aed581;stop-opacity:0.5" />
+                </linearGradient>
+              </defs>
+              <circle cx="125" cy="125" r="110" fill="url(#techGradient)" />
+              <path d="M125 15 L125 235 M15 125 L235 125" stroke="#00bcd4" stroke-width="2" stroke-dasharray="10 10"/>
+              <circle cx="125" cy="125" r="70" fill="rgba(0,188,212,0.1)" />
+              <circle cx="125" cy="125" r="30" fill="#aed581" />
+            </svg>
+            <span class="text-gray-600"> 2023 Cursor Rules. All rights reserved.</span>
+          </div>
+
+          <div class="flex space-x-4">
+            <a href="https://twitter.com/cursorrules" class="text-gray-600 hover:text-accent-primary transition">
+              <i class="ri-twitter-line text-2xl"></i>
+            </a>
+            <a href="https://github.com/PatrickJS/awesome-cursorrules" class="text-gray-600 hover:text-accent-primary transition">
+              <i class="ri-github-line text-2xl"></i>
+            </a>
+            <a href="https://discord.cursorrules.com" class="text-gray-600 hover:text-accent-primary transition">
+              <i class="ri-discord-line text-2xl"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Rule Detail Modal -->
+    <div id="ruleDetailModal" class="modal fixed inset-0 z-50 flex items-center justify-center hidden">
+      <div id="ruleDetailContent" class="relative max-w-3xl w-full max-h-[160vh] rounded-xl overflow-hidden">
+        <div class="p-6">
+          <div class="flex justify-between items-center mb-4">
+            <h2 id="ruleModalTitle" class="text-2xl font-bold text-accent-primary"></h2>
+            <button id="closeModalBtn" class="text-primary-text hover:text-accent-primary transition">
+              <i class="ri-close-line text-3xl"></i>
+            </button>
+          </div>
+          
+          <button id="copyRuleBtn" class="cta-button text-white px-4 py-2 rounded hover:opacity-90 mb-4 flex items-center">
+            <i class="ri-file-copy-line mr-2"></i>Copy Rule
+          </button>
+          
+          <div id="ruleLoadingIndicator" class="text-center py-4" style="display:none;">
+            <div class="spinner animate-spin inline-block w-8 h-8 border-4 border-accent-primary border-t-transparent rounded-full"></div>
+            <p class="mt-2 text-primary-text">Loading rule content...</p>
+          </div>
+          
+          <pre id="ruleModalBody" class="bg-secondary-bg p-4 rounded-lg overflow-x-auto text-primary-text"></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // FAQ Toggle Functionality
+    document.querySelectorAll('.faq-item button').forEach(button => {
+      button.addEventListener('click', () => {
+        const content = button.nextElementSibling;
+        content.classList.toggle('hidden');
+        button.querySelector('i').classList.toggle('ri-arrow-down-s-line');
+        button.querySelector('i').classList.toggle('ri-arrow-up-s-line');
+      });
+    });
+  </script>
+
+  <script>
+    window.twttr?.ready(() => {
+      // No carousel initialization needed
+    });
+  </script>
+
+  <style>
+    .twitter-feed-carousel, .youtube-feed-carousel, .jike-feed-carousel {
+      overflow: hidden;
+      position: relative;
+      padding: 0 50px; /* Make room for arrows */
+    }
+
+    .carousel-track {
+      display: flex;
+      gap: 1rem;
+      transition: transform 0.3s ease;
+    }
+
+    .carousel-prev, .carousel-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.9);
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .carousel-prev:hover,
+    .carousel-next:hover {
+      background: white;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    .carousel-prev {
+      left: 10px;
+    }
+
+    .carousel-next {
+      right: 10px;
+    }
+
+    /* Update the arrow icons */
+    .carousel-prev i,
+    .carousel-next i {
+      font-size: 24px;
+      color: #333;
+      opacity: 0.8;
+      transition: opacity 0.3s ease;
+    }
+
+    .carousel-prev:hover i,
+    .carousel-next:hover i {
+      opacity: 1;
+    }
+
+    /* Update dots styling to be more subtle */
+    .carousel-dots {
+      margin-top: 20px;
+      position: relative;
+      bottom: 0;
+      display: flex;
+      gap: 0.5rem;
+      z-index: 10;
+    }
+
+    .carousel-dot {
+      width: 6px;
+      height: 6px;
+      background: rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .carousel-dot.active {
+      background: rgba(0, 0, 0, 0.6);
+    }
+  </style>
+
+  <script>
+    // Update carousel buttons to use new arrow icons
+    document.querySelectorAll('.carousel-prev').forEach(btn => {
+      btn.innerHTML = '<i class="ri-arrow-left-s-line"></i>';
+    });
+  
+    document.querySelectorAll('.carousel-next').forEach(btn => {
+      btn.innerHTML = '<i class="ri-arrow-right-s-line"></i>';
+    });
+
+    // Updated carousel functionality with dots navigation
+    const carousels = document.querySelectorAll('.feed-carousel');
+
+    carousels.forEach(carousel => {
+      const track = carousel.querySelector('.carousel-track');
+      const prevBtn = carousel.querySelector('.carousel-prev');
+      const nextBtn = carousel.querySelector('.carousel-next');
+      const dotsContainer = carousel.querySelector('.carousel-dots');
+      const cardWidth = track.querySelector('.twitter-card, .youtube-card, .jike-card').offsetWidth;
+      const gap = parseFloat(window.getComputedStyle(track).gap);
+      let position = 0;
+      const totalCards = track.children.length;
+      let activeDot = 0;
+
+      // Create dots based on number of items
+      const createDots = () => {
+        const cardsToShow = window.innerWidth < 768 ? 2 : 4;
+        const totalDots = Math.ceil(totalCards / cardsToShow);
+        dotsContainer.innerHTML = '';
+        
+        for (let i = 0; i < totalDots; i++) {
+          const dot = document.createElement('button');
+          dot.classList.add('carousel-dot');
+          if (i === activeDot) {
+            dot.classList.add('active');
+          }
+          dot.addEventListener('click', () => moveToSlide(i));
+          dotsContainer.appendChild(dot);
+        }
+      };
+
+      const moveCarousel = (direction) => {
+        const cardsToShow = window.innerWidth < 768 ? 2 : 4;
+        const moveDistance = (cardWidth + gap) * cardsToShow;
+        
+        if (direction === 'next' && position > -(totalCards - cardsToShow) * (cardWidth + gap)) {
+          position -= moveDistance;
+          activeDot++;
+        } else if (direction === 'prev' && position < 0) {
+          position += moveDistance;
+          activeDot--;
+        }
+        
+        track.style.transform = `translateX(${position}px)`;
+        updateDots();
+      };
+
+      const moveToSlide = (index) => {
+        const cardsToShow = window.innerWidth < 768 ? 2 : 4;
+        position = -index * (cardWidth + gap) * cardsToShow;
+        activeDot = index;
+        track.style.transform = `translateX(${position}px)`;
+        updateDots();
+      };
+
+      const updateDots = () => {
+        const dots = dotsContainer.querySelectorAll('.carousel-dot');
+        dots.forEach((dot, index) => {
+          dot.classList.toggle('active', index === activeDot);
+        });
+      };
+
+      prevBtn.addEventListener('click', () => moveCarousel('prev'));
+      nextBtn.addEventListener('click', () => moveCarousel('next'));
+
+      window.addEventListener('resize', () => {
+        position = 0;
+        activeDot = 0;
+        track.style.transform = `translateX(0)`;
+        createDots();
+        updateDots();
+      });
+
+      // Initialize dots
+      createDots();
+    });
+  </script>
+
+  <script>
+    function copyCode(button) {
+      const codeBlock = button.nextElementSibling;
+      const codeText = codeBlock.textContent;
+      navigator.clipboard.writeText(codeText).then(() => {
+        button.innerHTML = '<i class="ri-check-line text-lg"></i>';
+        setTimeout(() => {
+          button.innerHTML = '<i class="ri-file-copy-line text-lg"></i>';
+        }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>

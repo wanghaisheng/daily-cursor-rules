@@ -1,0 +1,11 @@
+{
+  "name": "cursorrules-data-fetcher",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "fetch": "node fetch-and-convert.js"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  }
+}
