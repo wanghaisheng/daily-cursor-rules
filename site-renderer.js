@@ -115,15 +115,6 @@ export function renderSite(content) {
   // renderDynamicHero(content);
 
   // Render Intro
-  if (content.intro) {
-    introEl.innerHTML = `
-      <div class="bg-white shadow rounded p-6 mb-6">
-        <h2 class="text-2xl font-semibold mb-4 text-gray-800">Intro</h2>
-        <div class="text-gray-700">${content.intro}</div>
-      </div>
-    `;
-  }
-
   // Dynamic rules grid rendering with responsive item count and filtering
   function calculateItemsPerPage() {
     const screenWidth = window.innerWidth;
