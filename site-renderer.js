@@ -1,9 +1,4 @@
 export function renderSite(content) {
-  if (!content) {
-    // Handle initial loading state
-    renderLoadingHero();
-    return;
-  }
 
   const navEl = document.getElementById('site-nav');
   const introEl = document.getElementById('intro');
@@ -15,98 +10,7 @@ export function renderSite(content) {
   const searchInputEl = document.getElementById('search-input');
   const lastUpdatedDateEl = document.getElementById('last-updated-date');
 
-  function renderLoadingHero() {
-    const headerEl = document.getElementById('site-header');
-    headerEl.innerHTML = `
-      <div class="header-gradient rounded-lg shadow-2xl p-8 mb-6 animate-pulse">
-        <div class="flex flex-col md:flex-row items-center justify-between relative z-10">
-          <div class="md:w-2/3">
-            <div class="h-10 bg-gray-300 mb-4 w-3/4 rounded"></div>
-            <div class="h-8 bg-gray-300 mb-4 w-1/2 rounded"></div>
-            <div class="h-6 bg-gray-300 mb-6 w-full rounded"></div>
-            <div class="flex space-x-4">
-              <div class="h-12 bg-gray-300 w-1/3 rounded"></div>
-              <div class="h-12 bg-gray-300 w-1/3 rounded"></div>
-            </div>
-            
-            <div class="mt-6 bg-gray-200 p-4 rounded-lg">
-              <div class="h-6 bg-gray-300 mb-3 w-1/2 rounded"></div>
-              <div class="h-4 bg-gray-300 w-full rounded"></div>
-            </div>
-          </div>
-          
-          <div class="hidden md:block">
-            <div class="w-64 h-64 bg-gray-300 rounded-full"></div>
-          </div>
-        </div>
-        
-        <div class="mt-4 text-sm opacity-70 flex items-center">
-          <div class="h-4 bg-gray-300 w-1/4 rounded"></div>
-        </div>
-      </div>
-    `;
-  }
-
-  function renderDynamicHero(content) {
-    const headerEl = document.getElementById('site-header');
-    headerEl.innerHTML = `
-      <div class="header-gradient rounded-lg shadow-2xl p-8 mb-6">
-        <div class="flex flex-col md:flex-row items-center justify-between relative z-10">
-          <div class="md:w-2/3">
-            <h1 class="text-4xl font-bold mb-4 flex items-center">
-              <i class="ri-cursor-line mr-3 text-accent-primary"></i>${content.title || 'Cursor Rules'}
-            </h1>
-            <h2 class="text-2xl mb-4 opacity-90 font-semibold text-gray-700">
-              ${content.intro ? content.intro.split(' ').slice(0, 15).join(' ') + '...' : 'Mastering the Art of Web Cursor Interaction Design'}
-            </h2>
-            <p class="text-lg mb-6 text-gray-600 leading-relaxed">
-              ${content.howTo || 'Transform your web interfaces with strategic cursor behaviors. Learn how intelligent cursor design can dramatically enhance user experience, improve accessibility, and create more intuitive digital interactions.'}
-            </p>
-            <div class="flex space-x-4">
-              <a href="https://github.com/PatrickJS/awesome-cursorrules" 
-                 target="_blank" 
-                 class="cta-button px-6 py-3 rounded-md flex items-center text-lg font-semibold">
-                <i class="ri-github-fill mr-2"></i> Explore on GitHub
-              </a>
-              <a href="#rules-container" 
-                 class="border border-tertiary-bg text-primary-text px-6 py-3 rounded-md hover:bg-accent-primary hover:text-white transition flex items-center text-lg font-semibold">
-                <i class="ri-list-check mr-2"></i> Browse Cursor Rules
-              </a>
-            </div>
-            
-            <div class="mt-6 bg-secondary-bg p-4 rounded-lg">
-              <h3 class="text-xl font-semibold mb-3 text-accent-primary">What Are Cursor Rules?</h3>
-              <p class="text-primary-text opacity-90">
-                ${content.whyCursorrules && content.whyCursorrules.length > 0 
-                  ? content.whyCursorrules[0] 
-                  : 'Cursor rules are advanced design guidelines that define how user cursors interact with web elements. They go beyond simple hover states, creating a language of interaction that improves usability, provides visual feedback, and enhances the overall user experience.'}
-              </p>
-            </div>
-          </div>
-          
-          <div class="hidden md:block">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 250" width="250" height="250" class="opacity-80">
-              <defs>
-                <linearGradient id="techGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" style="stop-color:#00bcd4;stop-opacity:0.5" />
-                  <stop offset="100%" style="stop-color:#aed581;stop-opacity:0.5" />
-                </linearGradient>
-              </defs>
-              <circle cx="125" cy="125" r="110" fill="url(#techGradient)" />
-              <path d="M125 15 L125 235 M15 125 L235 125" stroke="#00bcd4" stroke-width="2" stroke-dasharray="10 10"/>
-              <circle cx="125" cy="125" r="70" fill="rgba(0,188,212,0.1)" />
-              <circle cx="125" cy="125" r="30" fill="#aed581" />
-            </svg>
-          </div>
-        </div>
-        
-        <div class="mt-4 text-sm opacity-70 flex items-center">
-          <i class="ri-verified-badge-fill mr-2 text-accent-primary"></i>
-          Last Updated: <span id="last-updated-date">${content.lastUpdated ? new Date(content.lastUpdated).toLocaleDateString() : 'Loading...'}</span>
-        </div>
-      </div>
-    `;
-  }
+  
 
   // Initial loading state
   // renderLoadingHero();
