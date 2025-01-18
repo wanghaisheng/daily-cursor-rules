@@ -1,5 +1,7 @@
 # ai programming playground
 
+和cursor约法三章的那些事
+
 
 idea: cursor is annoying, one change may break all your previous work.  found a rules repo, turn it into  a hub website
 
