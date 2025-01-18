@@ -1,4 +1,4 @@
-name: Run JavaScript Script
+name: Run JavaScript Script and Commit Results
 
 on:
   workflow_dispatch:  # Allows manual trigger
@@ -21,4 +21,20 @@ jobs:
       - name: Run script
         run: |
           npm install
-          npm run fetch
+          npm run fetch # Script should fetch and store data into a file
+      
+      - name: Configure Git
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+
+      - name: Commit changes
+        run: |
+          git add .
+          git commit -m "Automated update: Data fetched by GitHub Actions" || echo "No changes to commit"
+      
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref_name }}
