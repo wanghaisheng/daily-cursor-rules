@@ -19,4 +19,6 @@ jobs:
           node-version: '18' # Specify Node.js version (adjust as needed)
 
       - name: Run script
-        run: node my-script.js  # The command to execute your JavaScript file
+        run: |
+          npm install
+          npm run fetch
