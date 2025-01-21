@@ -25,3 +25,12 @@ v3 integrate with image placeholder
 
 
 v4 integrate with prod image
+
+
+https://github.com/RayFernando1337/llm-cursor-rules/tree/main/marketing
+
+https://github.com/wanghaisheng/daily-cursor-rules/edit/main/README.md
+
+https://github.com/wanghaisheng/cursor.directory
+
+https://github.com/flashclub/thinking-cursor-rules
